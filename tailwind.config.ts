@@ -13,6 +13,15 @@ const config: Config = {
         "gradient-conic":
           "conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))",
       },
+      colors: {
+        primaryColor: "rgba(24,30,36,1)",
+      },
+      textColor: {
+        default: "#a6adbb",
+      },
+      gridTemplateColumns: {
+        "auto-fit-cards": "repeat(auto-fit, minmax(277px, 1fr))",
+      },
     },
   },
   plugins: [],
