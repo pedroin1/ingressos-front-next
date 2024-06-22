@@ -19,10 +19,12 @@ export default function RootLayout({
     <html lang="en">
       <body
         className={`${montserrat.className} 
-        flex flex-col min-h-screen items-center bg-primaryColor text-default`}
+        flex flex-col min-h-screen items-center bg-primary text-default`}
       >
-        <NavBar />
-        <div className="p-4 md:p-10 w-full max-w-[1500px]">{children}</div>
+        <div className="p-4 md:p-10 w-full max-w-[1500px]">
+          <NavBar />
+          {children}
+        </div>
       </body>
     </html>
   );
