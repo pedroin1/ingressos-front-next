@@ -1,6 +1,11 @@
+import { GetSpotsByEvent } from "@/actions/get-spots";
+import TitleComponent from "@/components/title";
 import { IEventModel } from "@/types/type";
 
-export default function SpotsLayoutPage({ params }: Params) {
+export default async function SpotsLayoutPage({ params }: Params) {
+  const spots = await GetSpotsByEvent(params.eventId);
+  console.log(spots);
+
   const event: IEventModel = {
     id: "123",
     name: "Evento 1",
@@ -36,12 +41,36 @@ export default function SpotsLayoutPage({ params }: Params) {
           </div>
         </div>
       </div>
+      <div className="mt-8">
+        <TitleComponent title="Escolha seu lugar" />
+        <div className="flex w-full items-stretch gap-x-4 medium:flex-col">
+          <div className="flex w-[98%] max-w-[1000px] flex-col px-12 py-6 rounded-xl bg-secondary mt-8">
+            <div className=" flex items-center justify-center min-w-full bg-primary p-6 rounded-xl">
+              <p className="font-semibold text-[28px]">PALCO</p>
+            </div>
+          </div>
+          <div className="flex flex-col px-12 grow-[1] py-6 rounded-xl bg-secondary mt-8">
+            <p className="text-xl mt-2 mb-2 font-bold">
+              Confira os valores do evento
+            </p>
+            <div className="mt-4 mb-4">
+              <p>Inteira: {event.price}</p>
+              <p>Meia Entrada: {event.price}</p>
+            </div>
+            <p>Select para saber se a entrada e meia ou inteira</p>
+            <p className="mt-6 mb-6">total R$ preco total</p>
+            <button className="bg-btn-primary text-secondary font-bold px-2 py-4 rounded-md hover:opacity-55 cursor-pointer">
+              IR PARA PAGAMENTO
+            </button>
+          </div>
+        </div>
+      </div>
     </section>
   );
 }
 
 type Params = {
   params: {
-    eventId: number;
+    eventId: string;
   };
 };

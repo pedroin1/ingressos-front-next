@@ -28,6 +28,11 @@ const config: Config = {
       gridTemplateColumns: {
         "auto-fit-cards": "repeat(auto-fit, minmax(277px, 1fr))",
       },
+      screens: {
+        small: { max: "600px" },
+        medium: { max: "960px" },
+        large: { max: "1800px" },
+      },
     },
   },
   plugins: [],

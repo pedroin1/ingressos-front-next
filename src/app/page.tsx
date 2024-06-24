@@ -1,41 +1,9 @@
+import { GetEvents } from "@/actions/get-events";
 import EventCard from "@/components/eventCard";
 import TitleComponent from "@/components/title";
-import { IEventModel } from "@/types/type";
-import Image from "next/image";
 
-export default function HomePage() {
-  const events: IEventModel[] = [
-    {
-      id: "123",
-      name: "Evento 1",
-      location: "SP",
-      image_url: "/images/event-1.jpg",
-      date: "02-12-2015",
-      organization: "Test",
-      price: 100,
-      rating: 2,
-    },
-    {
-      id: "123",
-      name: "Evento 1",
-      location: "SP",
-      image_url: "/images/event-1.jpg",
-      date: "02-12-2015",
-      organization: "Test",
-      price: 100,
-      rating: 2,
-    },
-    {
-      id: "123",
-      name: "Evento 1",
-      location: "SP",
-      image_url: "/images/event-1.jpg",
-      date: "02-12-2015",
-      organization: "Test",
-      price: 100,
-      rating: 2,
-    },
-  ];
+export default async function HomePage() {
+  const events = await GetEvents();
 
   return (
     <main>

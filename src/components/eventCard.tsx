@@ -8,7 +8,7 @@ export default function EventCard({ event }: Props) {
         <img src={event.image_url} alt={event.name} />
         <div className="flex flex-col gap-y-2 px-4 py-6">
           <p className="text-sm uppercase text-subtitle">
-            {new Date(event.date).toLocaleDateString("pt-BR", {
+            {new Date("03-05-2022").toLocaleDateString("pt-BR", {
               weekday: "long",
               day: "2-digit",
               month: "2-digit",
