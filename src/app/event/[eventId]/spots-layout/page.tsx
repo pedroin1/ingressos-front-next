@@ -1,7 +1,14 @@
 import { GetSpotsByEvent } from "@/actions/get-spots";
+import SelectComponent from "@/components/select";
 import SpotSeatIcon from "@/components/spotSeat";
 import TitleComponent from "@/components/title";
 import { IEventModel } from "@/types/type";
+import { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: "Evento | Assentos",
+  description: "Pagina do evento",
+};
 
 export default async function SpotsLayoutPage({ params }: Params) {
   const spots = await GetSpotsByEvent(params.eventId);
@@ -62,12 +69,13 @@ export default async function SpotsLayoutPage({ params }: Params) {
             </div>
             <div className="flex flex-col gap-4 mt-4">
               {spotGroupedByRow.map(({ row, spots }) => (
-                <div className="flex gap-4 items-center">
+                <div className="items-center justify-center flex gap-4 ">
                   {row}
                   {spots.map((spot, index) => (
                     <SpotSeatIcon
                       key={index}
                       spotId={spot.id}
+                      eventId={params.eventId}
                       spotLabel={spot.name}
                       reserved={spot.status !== "available"}
                       disabled={false}
@@ -99,7 +107,10 @@ export default async function SpotsLayoutPage({ params }: Params) {
               <p>Inteira: {event.price}</p>
               <p>Meia Entrada: {event.price}</p>
             </div>
-            <p>Select para saber se a entrada e meia ou inteira</p>
+            <SelectComponent
+              label="Selecione seu ticket"
+              values={["Meia", "Inteira"]}
+            />
             <p className="mt-6 mb-6">total R$ preco total</p>
             <button className="bg-btn-primary text-secondary font-bold px-2 py-4 rounded-md hover:bg-[#c1c1c1]">
               IR PARA PAGAMENTO

@@ -1,6 +1,5 @@
-import { ISpotModel } from "@/types/type";
-
 `use server`;
+import { ISpotModel } from "@/types/type";
 
 export async function GetSpotsByEvent(eventId: string) {
   const response = await fetch(

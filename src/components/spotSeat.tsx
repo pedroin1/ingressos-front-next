@@ -1,9 +1,25 @@
+"use client";
+
+import {
+  selectSpotAction,
+  unselectSpotAction,
+} from "@/actions/spots-mark-action";
+
 export default function SpotSeatIcon({
   spotId,
+  eventId,
   spotLabel,
   reserved,
   disabled,
 }: Props) {
+  const handleAddSpotOnStorage = async (spotName: string) => {
+    selectSpotAction(eventId, spotName);
+  };
+
+  const handleRemoveSpotOnStorage = async (spotName: string) => {
+    unselectSpotAction(spotName);
+  };
+
   return (
     <div className="flex">
       <input
@@ -14,6 +30,11 @@ export default function SpotSeatIcon({
         value={spotId}
         disabled={reserved}
         defaultChecked={reserved}
+        onChange={(e) =>
+          e.target.checked
+            ? handleAddSpotOnStorage(spotLabel)
+            : handleRemoveSpotOnStorage(spotLabel)
+        }
       />
       <label
         htmlFor={`spot-${spotId}`}
@@ -32,6 +53,7 @@ export default function SpotSeatIcon({
 
 interface Props {
   spotId: string;
+  eventId: string;
   spotLabel: string;
   reserved: boolean;
   disabled: boolean;
