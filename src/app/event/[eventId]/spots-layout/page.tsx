@@ -1,10 +1,22 @@
 import { GetSpotsByEvent } from "@/actions/get-spots";
+import SpotSeatIcon from "@/components/spotSeat";
 import TitleComponent from "@/components/title";
 import { IEventModel } from "@/types/type";
 
 export default async function SpotsLayoutPage({ params }: Params) {
   const spots = await GetSpotsByEvent(params.eventId);
-  console.log(spots);
+  const rowLetters = spots.map((spot) => spot.name[0]);
+  const uniqueRowLetters = rowLetters.filter(
+    (row, index) => rowLetters.indexOf(row) === index
+  );
+  const spotGroupedByRow = uniqueRowLetters.map((row) => {
+    return {
+      row,
+      spots: spots.filter((spot) => {
+        return spot.name[0] === row;
+      }),
+    };
+  });
 
   const event: IEventModel = {
     id: "123",
@@ -46,7 +58,37 @@ export default async function SpotsLayoutPage({ params }: Params) {
         <div className="flex w-full items-stretch gap-x-4 medium:flex-col">
           <div className="flex w-[98%] max-w-[1000px] flex-col px-12 py-6 rounded-xl bg-secondary mt-8">
             <div className=" flex items-center justify-center min-w-full bg-primary p-6 rounded-xl">
-              <p className="font-semibold text-[28px]">PALCO</p>
+              <div className="font-semibold text-[28px]">PALCO</div>
+            </div>
+            <div className="flex flex-col gap-4 mt-4">
+              {spotGroupedByRow.map(({ row, spots }) => (
+                <div className="flex gap-4 items-center">
+                  {row}
+                  {spots.map((spot, index) => (
+                    <SpotSeatIcon
+                      key={index}
+                      spotId={spot.id}
+                      spotLabel={spot.name}
+                      reserved={spot.status !== "available"}
+                      disabled={false}
+                    />
+                  ))}
+                </div>
+              ))}
+            </div>
+            <div className="flex justify-around mt-12 mb-12">
+              <div className="flex items-center">
+                <span className="mr-1 block w-4 h-4 rounded-full bg-[#00A96E]" />
+                Disponivel
+              </div>
+              <div className="flex items-center">
+                <span className="mr-1 block w-4 h-4 rounded-full bg-[#A6ADBB]" />
+                Ocupado
+              </div>
+              <div className="flex items-center">
+                <span className="mr-1 block w-4 h-4 rounded-full bg-[#7480ff]" />
+                Selecionado
+              </div>
             </div>
           </div>
           <div className="flex flex-col px-12 grow-[1] py-6 rounded-xl bg-secondary mt-8">
@@ -59,7 +101,7 @@ export default async function SpotsLayoutPage({ params }: Params) {
             </div>
             <p>Select para saber se a entrada e meia ou inteira</p>
             <p className="mt-6 mb-6">total R$ preco total</p>
-            <button className="bg-btn-primary text-secondary font-bold px-2 py-4 rounded-md hover:opacity-55 cursor-pointer">
+            <button className="bg-btn-primary text-secondary font-bold px-2 py-4 rounded-md hover:bg-[#c1c1c1]">
               IR PARA PAGAMENTO
             </button>
           </div>
