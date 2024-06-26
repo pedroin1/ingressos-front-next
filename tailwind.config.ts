@@ -33,6 +33,9 @@ const config: Config = {
         medium: { max: "960px" },
         large: { max: "1800px" },
       },
+      margin: {
+        "0-auto": "0 auto",
+      },
     },
   },
   plugins: [],
