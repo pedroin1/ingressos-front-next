@@ -1,9 +1,11 @@
 import { GetSpotsByEvent } from "@/actions/get-spots";
-import SelectComponent from "@/components/select";
+
 import SpotSeatIcon from "@/components/spotSeat";
+import TicketKindSelect from "@/components/ticketKindSelect";
 import TitleComponent from "@/components/title";
 import { IEventModel } from "@/types/type";
 import { Metadata } from "next";
+import { cookies } from "next/headers";
 
 export const metadata: Metadata = {
   title: "Evento | Assentos",
@@ -11,6 +13,17 @@ export const metadata: Metadata = {
 };
 
 export default async function SpotsLayoutPage({ params }: Params) {
+  const event: IEventModel = {
+    id: "123",
+    name: "Evento 1",
+    location: "Sao paulo",
+    image_url: "/images/event-1.jpg",
+    date: "02-12-2015",
+    organization: "Test",
+    price: 100,
+    rating: 2,
+  };
+
   const spots = await GetSpotsByEvent(params.eventId);
   const rowLetters = spots.map((spot) => spot.name[0]);
   const uniqueRowLetters = rowLetters.filter(
@@ -25,16 +38,24 @@ export default async function SpotsLayoutPage({ params }: Params) {
     };
   });
 
-  const event: IEventModel = {
-    id: "123",
-    name: "Evento 1",
-    location: "Sao paulo",
-    image_url: "/images/event-1.jpg",
-    date: "02-12-2015",
-    organization: "Test",
-    price: 100,
-    rating: 2,
-  };
+  const cookieStore = cookies();
+  const selectedSpots = JSON.parse(cookieStore.get("spots")?.value || "[]");
+  const ticketKind = cookieStore.get("ticketKind")?.value;
+  let totalPrice;
+
+  if (ticketKind === "inteira") {
+    totalPrice = new Intl.NumberFormat("pt-BR", {
+      style: "currency",
+      currency: "BRL",
+    }).format(selectedSpots.length * event.price);
+  } else if (ticketKind === "meia") {
+    totalPrice = new Intl.NumberFormat("pt-BR", {
+      style: "currency",
+      currency: "BRL",
+    }).format(selectedSpots.length * (event.price / 2));
+  } else {
+    totalPrice = 0;
+  }
 
   return (
     <section className="mt-10 h-full min-w-80 ">
@@ -77,7 +98,7 @@ export default async function SpotsLayoutPage({ params }: Params) {
                       spotId={spot.id}
                       eventId={params.eventId}
                       spotLabel={spot.name}
-                      reserved={spot.status !== "available"}
+                      selected={selectedSpots.includes(spot.name)}
                       disabled={false}
                     />
                   ))}
@@ -99,19 +120,20 @@ export default async function SpotsLayoutPage({ params }: Params) {
               </div>
             </div>
           </div>
-          <div className="flex flex-col px-12 grow-[1] py-6 rounded-xl bg-secondary mt-8">
+          <div className="flex flex-col px-12 grow-[1] flex-shrink-0 max-w-[400px] max-h-[400px] py-6 rounded-xl bg-secondary mt-8">
             <p className="text-xl mt-2 mb-2 font-bold">
               Confira os valores do evento
             </p>
             <div className="mt-4 mb-4">
-              <p>Inteira: {event.price}</p>
-              <p>Meia Entrada: {event.price}</p>
+              <p>Inteira - R${event.price}</p>
+              <p>Meia Entrada - R${event.price / 2}</p>
             </div>
-            <SelectComponent
-              label="Selecione seu ticket"
-              values={["Meia", "Inteira"]}
-            />
-            <p className="mt-6 mb-6">total R$ preco total</p>
+            <TicketKindSelect defaultValue={ticketKind} price={event.price} />
+            <p className="mt-6 mb-6">
+              {ticketKind
+                ? `Total: R$ ${totalPrice}`
+                : "Selecione o tipo de entrada para verficar os valores..."}
+            </p>
             <button className="bg-btn-primary text-secondary font-bold px-2 py-4 rounded-md hover:bg-[#c1c1c1]">
               IR PARA PAGAMENTO
             </button>

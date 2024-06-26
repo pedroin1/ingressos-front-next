@@ -9,7 +9,7 @@ export default function SpotSeatIcon({
   spotId,
   eventId,
   spotLabel,
-  reserved,
+  selected,
   disabled,
 }: Props) {
   const handleAddSpotOnStorage = async (spotName: string) => {
@@ -28,8 +28,8 @@ export default function SpotSeatIcon({
         id={`spot-${spotId}`}
         className="peer hidden"
         value={spotId}
-        disabled={reserved}
-        defaultChecked={reserved}
+        disabled={disabled}
+        defaultChecked={selected}
         onChange={(e) =>
           e.target.checked
             ? handleAddSpotOnStorage(spotLabel)
@@ -55,6 +55,6 @@ interface Props {
   spotId: string;
   eventId: string;
   spotLabel: string;
-  reserved: boolean;
+  selected: boolean;
   disabled: boolean;
 }
