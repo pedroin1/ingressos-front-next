@@ -43,12 +43,12 @@ export default async function SpotsLayoutPage({ params }: Params) {
   const ticketKind = cookieStore.get("ticketKind")?.value;
   let totalPrice;
 
-  if (ticketKind === "inteira") {
+  if (ticketKind === "full") {
     totalPrice = new Intl.NumberFormat("pt-BR", {
       style: "currency",
       currency: "BRL",
     }).format(selectedSpots.length * event.price);
-  } else if (ticketKind === "meia") {
+  } else if (ticketKind === "half") {
     totalPrice = new Intl.NumberFormat("pt-BR", {
       style: "currency",
       currency: "BRL",
@@ -128,7 +128,10 @@ export default async function SpotsLayoutPage({ params }: Params) {
               <p>Inteira - R${event.price}</p>
               <p>Meia Entrada - R${event.price / 2}</p>
             </div>
-            <TicketKindSelect defaultValue={ticketKind} price={event.price} />
+            <TicketKindSelect
+              label="Selecione sua entrada"
+              defaultValue={ticketKind}
+            />
             <p className="mt-6 mb-6">
               {ticketKind
                 ? `Total: R$ ${totalPrice}`

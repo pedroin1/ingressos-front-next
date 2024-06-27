@@ -34,7 +34,7 @@ export default function PageCheckOut() {
             placeholder="Digite seu email..."
             className="min-w-[300px]"
             value={email}
-            setValue={setEmail}
+            onChange={(e) => setEmail(e.target.value)}
           />
           <InputComponent
             label="Nome no cartão"
@@ -42,7 +42,7 @@ export default function PageCheckOut() {
             placeholder="Nome no cartão..."
             className="min-w-[300px]"
             value={cardName}
-            setValue={setCardName}
+            onChange={(e) => setCardName(e.target.value)}
           />
           <InputComponent
             label="Numero do cartão"
@@ -50,7 +50,7 @@ export default function PageCheckOut() {
             placeholder="Numero do cartão..."
             className="min-w-[300px]"
             value={cardNumber}
-            setValue={setCardNumber}
+            onChange={(e) => setCardNumber(e.target.valueAsNumber)}
           />
           <div className="flex justify-between mb-4 gap-4 flex-shrink-1 small:flex-col">
             <InputComponent
@@ -58,7 +58,7 @@ export default function PageCheckOut() {
               type="date"
               className="min-w-[100px] w-[250px]"
               value={expiryDate}
-              setValue={setExpiryDate}
+              onChange={(e) => setExpiryDate(e.target.value)}
             />
             <InputComponent
               label="CCV"
@@ -66,7 +66,7 @@ export default function PageCheckOut() {
               placeholder="ex: 111"
               className="min-w-[100px] max-w-[200px]"
               value={ccv}
-              setValue={setCcv}
+              onChange={(e) => setCcv(e.target.valueAsNumber)}
             />
           </div>
           <button
