@@ -2,7 +2,7 @@
 
 import { selectTicketKind } from "@/actions/ticket-type-action";
 
-export default function TicketKindSelect({ price, defaultValue }: Props) {
+export default function TicketKindSelect({ value }: Props) {
   const handleClickSelectValue = (value: string) => {
     if (value === "Inteira") {
       selectTicketKind("inteira");
@@ -18,7 +18,7 @@ export default function TicketKindSelect({ price, defaultValue }: Props) {
         className="p-2 rounded-md bg-primary"
         id="ticket-types"
         name="ticket-types"
-        defaultValue={defaultValue}
+        defaultValue={value}
         onChange={(e) => handleClickSelectValue(e.target.value)}
       >
         <option selected disabled>
@@ -35,6 +35,5 @@ export default function TicketKindSelect({ price, defaultValue }: Props) {
 }
 
 interface Props {
-  price: number;
-  defaultValue?: string;
+  value?: string;
 }

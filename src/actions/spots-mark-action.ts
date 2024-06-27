@@ -23,6 +23,7 @@ export async function unselectSpotAction(spotName: string) {
 
 export async function clearSportsAction() {
   const cookieStorage = cookies();
-  cookieStorage.set("spots", "[]");
-  cookieStorage.set("eventId", "");
+  cookieStorage.delete("spots");
+  cookieStorage.delete("eventId");
+  cookieStorage.delete("ticketKind");
 }

@@ -1,3 +1,5 @@
+"use client";
+
 import { Dispatch, SetStateAction } from "react";
 
 export default function InputComponent({
@@ -5,7 +7,7 @@ export default function InputComponent({
   placeholder,
   type,
   value = "",
-  setValue = () => {},
+  setValue,
   className,
 }: Props) {
   return (
@@ -28,6 +30,6 @@ interface Props {
   label: string;
   placeholder?: string;
   type: string;
-  value?: any;
-  setValue?: Dispatch<SetStateAction<any>>;
+  value: any;
+  setValue: Dispatch<SetStateAction<any>>;
 }

@@ -6,7 +6,7 @@ export async function GetSpotsByEvent(eventId: string) {
     `http://localhost:3000/events/${eventId}/spots`,
     {
       next: {
-        revalidate: 5,
+        tags: ["spots"],
       },
     }
   );

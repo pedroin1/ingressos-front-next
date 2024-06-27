@@ -1,7 +1,7 @@
 export interface IEventModel {
   id: string;
   name: string;
-  organization: string;
+  description: string;
   date: string;
   price: number;
   rating: number;
