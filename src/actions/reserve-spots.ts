@@ -1,6 +1,6 @@
 "use server";
 
-import { revalidateTag } from "next/cache";
+import { revalidatePath } from "next/cache";
 
 export async function ReserveSpotsByEvent(
   eventId: string,
@@ -9,8 +9,6 @@ export async function ReserveSpotsByEvent(
   email: string
 ) {
   try {
-    console.log(ticketKind);
-
     const response = await fetch(
       `http://localhost:3000/events/${eventId}/reserve`,
       {
@@ -27,15 +25,10 @@ export async function ReserveSpotsByEvent(
     );
 
     const data = await response.json();
-    console.log(data);
+    if (!response.ok) throw new Error(data.message);
 
-    if (!response.ok) {
-      throw new Error(data.message);
-    }
-
-    revalidateTag("spots");
-    return data;
+    revalidatePath(`/event/${eventId}`);
   } catch (err) {
-    throw new Error("Erro ao realizar requisicao");
+    throw new Error((err as Error).message);
   }
 }

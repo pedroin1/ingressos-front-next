@@ -5,6 +5,7 @@ import ButtonNavigate from "@/components/button";
 import SpotSeatIcon from "@/components/spotSeat";
 import TicketKindSelect from "@/components/ticketKindSelect";
 import TitleComponent from "@/components/title";
+import { formatDateToBr } from "@/util/Date";
 import { Metadata } from "next";
 import { cookies } from "next/headers";
 
@@ -54,12 +55,7 @@ export default async function SpotsLayoutPage({ params }: Params) {
     <section className="mt-10 h-full min-w-80 ">
       <div className="flex flex-col px-12 py-6 rounded-xl bg-secondary">
         <p className="text-sm text-subtitle font-bold">
-          {new Date(event.date).toLocaleDateString("pt-BR", {
-            weekday: "long",
-            day: "2-digit",
-            month: "2-digit",
-            year: "numeric",
-          })}
+          {formatDateToBr(event.date)}
         </p>
         <p className="text-2xl mt-2 mb-2 font-bold">{event.name}</p>
         <p>{event.location}</p>

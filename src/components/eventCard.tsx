@@ -1,4 +1,5 @@
 import { IEventModel } from "@/types/type";
+import { formatDateToBr } from "@/util/Date";
 import Image from "next/image";
 import Link from "next/link";
 import image from "../../public/mockImage.jpg";
@@ -16,12 +17,7 @@ export default function EventCard({ event }: Props) {
         />
         <div className="flex flex-col gap-y-2 px-4 py-6">
           <p className="text-sm uppercase text-subtitle">
-            {new Date("03-05-2022").toLocaleDateString("pt-BR", {
-              weekday: "long",
-              day: "2-digit",
-              month: "2-digit",
-              year: "numeric",
-            })}
+            {formatDateToBr(event.date)}
           </p>
           <p className="font-semibold">{event.name}</p>
           <p className="text-sm font-normal">{event.location}</p>

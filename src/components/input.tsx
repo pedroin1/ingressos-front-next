@@ -10,7 +10,7 @@ export default function InputComponent({
       <label htmlFor={`input-${label}`}>{label}</label>
       <input
         id={`input-${label}`}
-        className={`rounded-sm p-1 bg-primary placeholder-gray-600 ${className}`}
+        className={`rounded-sm py-1 px-2 bg-primary placeholder-gray-600 ${className}`}
         {...props}
       />
     </div>

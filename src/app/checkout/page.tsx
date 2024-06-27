@@ -1,5 +1,6 @@
 import { GetEventById } from "@/actions/get-events";
 import FormPagamento from "@/components/formPagamento";
+import { formatDateToBr } from "@/util/Date";
 import { cookies } from "next/headers";
 
 export default async function PageCheckOut() {
@@ -17,12 +18,12 @@ export default async function PageCheckOut() {
 
   let totalPrice;
 
-  if (ticketKind === "inteira") {
+  if (ticketKind === "full") {
     totalPrice = new Intl.NumberFormat("pt-BR", {
       style: "currency",
       currency: "BRL",
     }).format(selectedSpots.length * (event ? event.price : 0));
-  } else if (ticketKind === "meia") {
+  } else if (ticketKind === "half") {
     totalPrice = new Intl.NumberFormat("pt-BR", {
       style: "currency",
       currency: "BRL",
@@ -38,7 +39,7 @@ export default async function PageCheckOut() {
             <>
               <p className="font-semibold">{event.name}</p>
               <p className="font-semibold">{event.location}</p>
-              <p className="font-semibold">{event.date}</p>
+              <p className="font-semibold">{formatDateToBr(event.date)}</p>
               <p className="font-semibold">
                 Assentos: {selectedSpots.join("-")}
               </p>

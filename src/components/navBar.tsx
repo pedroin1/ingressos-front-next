@@ -3,16 +3,10 @@ import Link from "next/link";
 
 export default function NavBar() {
   return (
-    <div className="flex max-w-full items-center justify-items-stretch rounded-2xl bg-bar px-6 py-2 shadow">
+    <div className="flex max-w-full items-center justify-items-stretch rounded-2xl bg-bar px-6 py-4 shadow">
       <div className="flex grow items-center justify-between">
         <Link href={"/"} className="mx-auto">
-          <Image
-            src={"logo.svg"}
-            width={156}
-            height={48}
-            alt="image"
-            className="max-h-[48px]"
-          />
+          <Image src={"logo.svg"} width={156} height={64} alt="image" />
         </Link>
         <Link
           href={"/checkout"}

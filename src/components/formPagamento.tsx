@@ -4,6 +4,8 @@ import { navigate } from "@/actions/navigate";
 import { ReserveSpotsByEvent } from "@/actions/reserve-spots";
 import { clearSportsAction } from "@/actions/spots-mark-action";
 import { useState } from "react";
+import toast from "react-hot-toast";
+import * as Yup from "yup";
 import InputComponent from "./input";
 
 export interface Props {
@@ -28,20 +30,24 @@ export default function FormPagamento({ eventId, spots, ticketKind }: Props) {
           parseTicketKind(ticketKind),
           email
         );
+        clearSportsAction();
+        toast.success("Pagamento finalizado");
+        navigate("/");
       } catch (err) {
-        alert((err as Error).message);
+        toast.error((err as Error).message);
       }
     }
-    clearSportsAction();
-    navigate("/");
-    alert("Pagamento FInalziado");
   };
 
   function parseTicketKind(ticketKind: string) {
     if (ticketKind === "meia") {
       return "half";
-    } else return "full;";
+    } else return "full";
   }
+
+  const SignupSchema = Yup.object().shape({
+    email: Yup.string().email("Invalid email").required("Required"),
+  });
 
   return (
     <div className="w-full flex-1 min-w-[320px] flex-col py-8 px-4 bg-secondary rounded-xl">
@@ -51,9 +57,10 @@ export default function FormPagamento({ eventId, spots, ticketKind }: Props) {
           label="E-mail"
           type="email"
           placeholder="Digite seu email..."
-          className="min-w-[300px]"
           value={email}
-          setValue={setEmail}
+          onChange={(e) => setEmail(e.target.value)}
+          required={email === ""}
+          className="required: bg-red-50"
         />
         <InputComponent
           label="Nome no cartão"
@@ -61,7 +68,7 @@ export default function FormPagamento({ eventId, spots, ticketKind }: Props) {
           placeholder="Nome no cartão..."
           className="min-w-[300px]"
           value={cardName}
-          setValue={setCardName}
+          onChange={(e) => setCardName(e.target.value)}
         />
         <InputComponent
           label="Numero do cartão"
@@ -69,7 +76,7 @@ export default function FormPagamento({ eventId, spots, ticketKind }: Props) {
           placeholder="Numero do cartão..."
           className="min-w-[300px]"
           value={cardNumber}
-          setValue={setCardNumber}
+          onChange={(e) => setCardNumber(e.target.value)}
         />
         <div className="flex justify-between mb-4 gap-4 flex-shrink-1 small:flex-col">
           <InputComponent
@@ -77,7 +84,7 @@ export default function FormPagamento({ eventId, spots, ticketKind }: Props) {
             type="date"
             className="min-w-[100px] w-[250px]"
             value={expiryDate}
-            setValue={setExpiryDate}
+            onChange={(e) => setExpiryDate(e.target.value)}
           />
           <InputComponent
             label="CCV"
@@ -85,7 +92,7 @@ export default function FormPagamento({ eventId, spots, ticketKind }: Props) {
             placeholder="ex: 111"
             className="min-w-[100px] max-w-[200px]"
             value={ccv}
-            setValue={setCcv}
+            onChange={(e) => setCcv(e.target.value)}
           />
         </div>
         <button
