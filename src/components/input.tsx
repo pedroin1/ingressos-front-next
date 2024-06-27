@@ -1,35 +1,23 @@
-"use client";
-
-import { Dispatch, SetStateAction } from "react";
+import { ComponentProps } from "react";
 
 export default function InputComponent({
   label,
-  placeholder,
-  type,
-  value = "",
-  setValue,
   className,
-}: Props) {
+  ...props
+}: InputProps) {
   return (
     <div className="flex flex-col gap-1">
       <label htmlFor={`input-${label}`}>{label}</label>
       <input
         id={`input-${label}`}
-        type={type}
-        placeholder={placeholder ? placeholder : ""}
         className={`rounded-sm p-1 bg-primary placeholder-gray-600 ${className}`}
-        value={value}
-        onChange={(e: any) => setValue(e.target.value)}
+        {...props}
       />
     </div>
   );
 }
 
-interface Props {
-  className?: string;
+type InputProps = ComponentProps<"input"> & {
   label: string;
-  placeholder?: string;
-  type: string;
-  value: any;
-  setValue: Dispatch<SetStateAction<any>>;
-}
+  className?: string;
+};

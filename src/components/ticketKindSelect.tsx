@@ -1,32 +1,46 @@
 "use client";
 
 import { selectTicketKind } from "@/actions/ticket-type-action";
+import { ComponentProps, useId } from "react";
 
-export default function TicketKindSelect({ value }: Props) {
+export default function TicketKindSelect({
+  label,
+  className,
+  ...props
+}: SelectProps) {
+  const id = useId();
+
+  const items = [
+    {
+      label: "Inteira",
+      value: "full",
+    },
+    {
+      label: "Meia",
+      value: "half",
+    },
+  ];
+
   const handleClickSelectValue = (value: string) => {
-    if (value === "Inteira") {
-      selectTicketKind("inteira");
-    } else {
-      selectTicketKind("meia");
-    }
+    selectTicketKind(value);
   };
 
   return (
     <>
-      <label htmlFor="ticket-types mb-1">Selecione sua entrada</label>
+      <label htmlFor={id}>{label}</label>
       <select
-        className="p-2 rounded-md bg-primary"
-        id="ticket-types"
-        name="ticket-types"
-        defaultValue={value}
+        id={id}
+        name={id}
+        className="p-2 rounded-md bg-primary mt-2"
         onChange={(e) => handleClickSelectValue(e.target.value)}
+        {...props}
       >
         <option selected disabled>
           Selecione...
         </option>
-        {["Inteira", "Meia"].map((value, index) => (
+        {items.map(({ label, value }, index) => (
           <option key={index} value={value}>
-            {value}
+            {label}
           </option>
         ))}
       </select>
@@ -34,6 +48,7 @@ export default function TicketKindSelect({ value }: Props) {
   );
 }
 
-interface Props {
-  value?: string;
-}
+type SelectProps = ComponentProps<"select"> & {
+  label: string;
+  className?: string;
+};
