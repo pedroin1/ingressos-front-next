@@ -7,7 +7,9 @@ export default function InputComponent({
 }: InputProps) {
   return (
     <div className="flex flex-col gap-1">
-      <label htmlFor={`input-${label}`}>{label}</label>
+      <label className="w-fit" htmlFor={`input-${label}`}>
+        {label}
+      </label>
       <input
         id={`input-${label}`}
         className={`rounded-sm py-1 px-2 bg-primary placeholder-gray-600 ${className}`}
