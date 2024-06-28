@@ -6,6 +6,7 @@ import SpotSeatIcon from "@/components/spotSeat";
 import TicketKindSelect from "@/components/ticketKindSelect";
 import TitleComponent from "@/components/title";
 import { formatDateToBr } from "@/util/Date";
+import { calculateTotalPriceOfTickets } from "@/util/Ticket";
 import { Metadata } from "next";
 import { cookies } from "next/headers";
 
@@ -35,31 +36,21 @@ export default async function SpotsLayoutPage({ params }: Params) {
 
   const selectedSpots = JSON.parse(cookieStore.get("spots")?.value || "[]");
   const ticketKind = cookieStore.get("ticketKind")?.value;
-  let totalPrice;
-
-  if (ticketKind === "full") {
-    totalPrice = new Intl.NumberFormat("pt-BR", {
-      style: "currency",
-      currency: "BRL",
-    }).format(selectedSpots.length * event.price);
-  } else if (ticketKind === "half") {
-    totalPrice = new Intl.NumberFormat("pt-BR", {
-      style: "currency",
-      currency: "BRL",
-    }).format(selectedSpots.length * (event.price / 2));
-  } else {
-    totalPrice = 0;
-  }
+  let totalPrice = calculateTotalPriceOfTickets(
+    ticketKind,
+    selectedSpots.length,
+    event.price
+  );
 
   return (
     <section className="mt-10 h-full min-w-80 ">
       <div className="flex flex-col px-12 py-6 rounded-xl bg-secondary">
-        <p className="text-sm text-subtitle font-bold">
+        <p className="text-lg text-subtitle font-bold">
           {formatDateToBr(event.date)}
         </p>
         <p className="text-2xl mt-2 mb-2 font-bold">{event.name}</p>
         <p>{event.location}</p>
-        <div className="flex gap-x-12 gap-y-5 flex-wrap items-center mt-5 mb-12 m-w-[300px]">
+        <div className="flex gap-x-12 gap-y-5 flex-wrap items-center mt-5 mb-12">
           <div className="flex flex-col gap-2">
             <p className="font-semibold">Descrição</p>
             <p>{event.description}</p>
@@ -72,9 +63,9 @@ export default async function SpotsLayoutPage({ params }: Params) {
       </div>
       <div className="mt-8">
         <TitleComponent title="Escolha seu lugar" />
-        <div className="flex w-full items-stretch gap-x-4 medium:flex-col">
-          <div className="flex w-[98%] max-w-[1000px] flex-col px-12 py-6 rounded-xl bg-secondary mt-8">
-            <div className=" flex items-center justify-center min-w-full bg-primary p-6 rounded-xl">
+        <div className="flex flex-wrap items-stretch gap-x-4">
+          <div className="flex w-full sm:w-[98%] md:min-w-[600px] lg:max-w-[1000px] flex-col px-12 py-6 rounded-xl bg-secondary mt-8">
+            <div className="flex items-center justify-center min-w-full bg-primary p-6 rounded-xl">
               <div className="font-semibold text-[28px]">PALCO</div>
             </div>
             <div className="flex flex-col gap-4 mt-4">
@@ -112,7 +103,7 @@ export default async function SpotsLayoutPage({ params }: Params) {
               </div>
             </div>
           </div>
-          <div className="flex flex-col px-12 grow-[1] flex-shrink-0 max-w-[400px] max-h-[400px] py-6 rounded-xl bg-secondary mt-8">
+          <div className="flex flex-col px-12 flex-grow max-w-full md:max-w-[500px] max-h-[400px] py-6 rounded-xl bg-secondary mt-8">
             <p className="text-xl mt-2 mb-2 font-bold">
               Confira os valores do evento
             </p>

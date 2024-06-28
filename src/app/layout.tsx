@@ -22,7 +22,7 @@ export default function RootLayout({
         className={`${montserrat.className} 
         flex flex-col min-h-screen items-center bg-primary text-default`}
       >
-        <div className="p-4 md:p-10 w-full max-w-[1500px]">
+        <div className="p-4 md:p-10 w-[100vw] min-w-[500px] max-w-[1600px]">
           <NavBar />
           <ToasterCustomContext />
           {children}
