@@ -9,6 +9,9 @@ const montserrat = Montserrat({ subsets: ["latin"] });
 export const metadata: Metadata = {
   title: "Ingressos | Home",
   description: "Pagina de ingressos",
+  icons: {
+    icon: ["/favicon.ico?v=4"],
+  },
 };
 
 export default function RootLayout({

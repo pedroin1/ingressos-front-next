@@ -2,7 +2,13 @@ import { GetEventById } from "@/actions/get-events";
 import FormPagamento from "@/components/formPagamento";
 
 import { formatDateToBr } from "@/util/Date";
+import { Metadata } from "next";
 import { cookies } from "next/headers";
+
+export const metadata: Metadata = {
+  title: "Evento | Checkout",
+  description: "Pagina do checkout",
+};
 
 export default async function PageCheckOut() {
   const cookieStore = cookies();
