@@ -2,6 +2,7 @@ import { ComponentProps } from "react";
 
 export default function InputComponent({
   label,
+  type,
   className,
   height,
   width,
@@ -19,6 +20,7 @@ export default function InputComponent({
       </div>
       <input
         id={`input-${label}`}
+        type={type}
         className={`rounded-sm py-1 px-2 bg-primary placeholder-gray-600 ${className}`}
         {...props}
       />
@@ -28,6 +30,7 @@ export default function InputComponent({
 
 type InputProps = ComponentProps<"input"> & {
   label: string;
+  type: string;
   className?: string;
   width?: string;
   height?: string;

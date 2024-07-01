@@ -41,7 +41,7 @@ export default async function PageCheckOut() {
     <section className="flex flex-wrap gap-8 mt-10 medium:flex-col">
       {event ? (
         <>
-          <div className="w-full sm:w-auto min-w-[320px] max-w-[350px] py-8 px-4 font-bold bg-secondary rounded-xl">
+          <div className="w-full sm:w-auto min-w-[300px] max-w-[300px] py-8 px-4 font-bold bg-secondary rounded-xl">
             <h1 className="text-2xl font-bold">Resumo da compra</h1>
             <div className="flex flex-col mt-6 mb-6">
               <p className="font-semibold">{event.name}</p>

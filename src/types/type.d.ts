@@ -14,3 +14,13 @@ export interface ISpotModel {
   name: string;
   status: string;
 }
+
+export interface CreateEventData {
+  name: string;
+  description: string;
+  location: string;
+  image_url: string;
+  eventDate: string;
+  rating: number;
+  price: number;
+}

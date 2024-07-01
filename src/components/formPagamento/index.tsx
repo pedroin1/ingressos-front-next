@@ -78,14 +78,14 @@ export default function FormPagamento({ eventId, spots, ticketKind }: Props) {
                 messageError={errors.nomeCartao}
               />
             </div>
-            <div className="flex gap-4 mb-4 items-end medium:flex-wrap">
+            <div className="flex gap-4 mb-4 items-end flex-wrap">
               <InputComponent
                 label="Numero do cartão"
                 name="numeroCartao"
                 type="text"
                 maxLength={19}
-                width="w-full"
                 placeholder="ex: 1111 2222 3333 4444"
+                width="flex-1"
                 className="no-arrows"
                 value={values.numeroCartao}
                 onChange={handleChange}
@@ -98,7 +98,7 @@ export default function FormPagamento({ eventId, spots, ticketKind }: Props) {
                 name="vencimento"
                 type="text"
                 placeholder="ex: 02/28"
-                width="w-full"
+                width="flex-1"
                 value={values.vencimento}
                 onChange={handleChange}
                 onBlur={handleBlur}
@@ -109,9 +109,9 @@ export default function FormPagamento({ eventId, spots, ticketKind }: Props) {
                 label="CCV"
                 type="text"
                 name="ccv"
-                width="w-full"
                 placeholder="ex: 111"
                 maxLength={3}
+                width="flex-none"
                 value={values.ccv}
                 onChange={handleChange}
                 onBlur={handleBlur}
