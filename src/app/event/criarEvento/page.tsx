@@ -11,6 +11,9 @@ export default async function CriarEventoPage() {
   return (
     <section className="mt-10 flex">
       <FromCriarEvento />
+      <div>
+        <InputComponent label="Imagem do evento" type="file" />
+      </div>
     </section>
   );
 }

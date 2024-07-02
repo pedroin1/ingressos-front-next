@@ -3,6 +3,7 @@ import ToasterCustomContext from "@/context/toasterContext";
 import type { Metadata } from "next";
 import { Montserrat } from "next/font/google";
 import "./globals.css";
+import Footer from "@/components/footer";
 
 const montserrat = Montserrat({ subsets: ["latin"] });
 
@@ -23,13 +24,14 @@ export default function RootLayout({
     <html lang="en">
       <body
         className={`${montserrat.className} 
-        flex flex-col min-h-screen items-center bg-primary text-default`}
+        flex flex-col justify-between min-h-screen items-center bg-primary text-default`}
       >
         <div className="p-4 md:p-10 w-[100vw] min-w-[500px] max-w-[1600px]">
           <NavBar />
           <ToasterCustomContext />
           {children}
         </div>
+        <Footer />
       </body>
     </html>
   );
