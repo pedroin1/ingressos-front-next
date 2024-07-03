@@ -14,14 +14,7 @@ export default function NavBar() {
           Criar Evento
         </Link>
         <Link href={"/"} className="mx-auto">
-          <Image
-            src={"logo.svg"}
-            width={156}
-            height={64}
-            quality={100}
-            alt="image"
-            priority={true}
-          />
+          <img src={"logo.svg"} className="w-56 min-w-32" alt="image-logo" />
         </Link>
         <Link
           href={"/checkout"}

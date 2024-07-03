@@ -7,6 +7,7 @@ import toast from "react-hot-toast";
 import { navigate } from "@/actions/navigate";
 import { Formik } from "formik";
 import validateFields from "./validation";
+import ButtonComponent from "../button";
 
 export default function FromCriarEvento() {
   const handleClickCreateEvent = async (event: CreateEventData) => {
@@ -20,7 +21,8 @@ export default function FromCriarEvento() {
   };
 
   return (
-    <div className="bg-secondary rounded-2xl w-[450px] h-fit">
+    <div className="w-[450px] h-fit py-8 px-4 bg-secondary rounded-xl">
+      <h1 className="text-2xl font-bold">Informações do evento</h1>
       <Formik
         initialValues={{
           name: "",
@@ -45,11 +47,12 @@ export default function FromCriarEvento() {
           handleSubmit,
           handleBlur,
         }) => (
-          <form className="flex flex-col p-4 gap-2" onSubmit={handleSubmit}>
+          <form className="flex flex-col gap-4 mt-2" onSubmit={handleSubmit}>
             <InputComponent
               label="Nome do evento"
               type="text"
               name="name"
+              placeholder="Evento..."
               value={values.name}
               onChange={handleChange}
               onBlur={handleBlur}
@@ -60,6 +63,7 @@ export default function FromCriarEvento() {
               label="Descricao do evento"
               type="text"
               name="description"
+              placeholder="Meu evento principal..."
               value={values.description}
               onChange={handleChange}
             />
@@ -67,7 +71,7 @@ export default function FromCriarEvento() {
               label="Data do evento"
               type="datetime-local"
               name="eventDate"
-              className="color"
+              placeholder="19/12/2024 12:00:00"
               value={values.eventDate}
               onChange={handleChange}
               onBlur={handleBlur}
@@ -102,19 +106,14 @@ export default function FromCriarEvento() {
               label="Localizacao do evento"
               type="text"
               name="location"
+              placeholder="Rio de janeiro - RJ"
               value={values.location}
               onChange={handleChange}
               onBlur={handleBlur}
               hasError={touched.location && errors.location}
               messageError={errors.location}
             />
-            <button
-              disabled={!isValid}
-              className="mt-2 bg-btn-primary uppercase text-secondary font-bold px-2 py-2 rounded-md 
-                hover:bg-[#c1c1c1] disabled:cursor-not-allowed disabled:bg-[#c1c1c1]"
-            >
-              Criar Evento
-            </button>
+            <ButtonComponent label=" Criar Evento" disabled={!isValid} />
           </form>
         )}
       </Formik>

@@ -7,6 +7,7 @@ import { Formik } from "formik";
 import toast from "react-hot-toast";
 import InputComponent from "../input";
 import validateFields from "./validation";
+import ButtonComponent from "../button";
 
 export default function FormPagamento({ eventId, spots, ticketKind }: Props) {
   const handleClickFinalzarPagamento = async (email: string) => {
@@ -26,7 +27,7 @@ export default function FormPagamento({ eventId, spots, ticketKind }: Props) {
 
   return (
     <div className="w-full flex-1 min-w-[320px] flex-col py-8 px-4 bg-secondary rounded-xl">
-      <h1 className="text-2xl font-bold">Informacoes do pagamento</h1>
+      <h1 className="text-2xl font-bold">Informações do pagamento</h1>
       <Formik
         initialValues={{
           email: "",
@@ -52,7 +53,7 @@ export default function FormPagamento({ eventId, spots, ticketKind }: Props) {
           touched,
         }) => (
           <form className="flex flex-col" onSubmit={handleSubmit}>
-            <div className="flex gap-4 mb-4 mt-2 items-end medium:flex-wrap">
+            <div className="flex gap-4 mb-4 items-end medium:flex-wrap">
               <InputComponent
                 label="E-mail"
                 name="email"
@@ -119,13 +120,7 @@ export default function FormPagamento({ eventId, spots, ticketKind }: Props) {
                 messageError={errors.ccv}
               />
             </div>
-            <button
-              disabled={!isValid}
-              className="bg-btn-primary uppercase text-secondary font-bold px-2 py-2 rounded-md 
-                hover:bg-[#c1c1c1] disabled:cursor-not-allowed disabled:bg-[#c1c1c1]"
-            >
-              finalizar pagamento
-            </button>
+            <ButtonComponent label="Finalizar pagamento" disabled={!isValid} />
           </form>
         )}
       </Formik>

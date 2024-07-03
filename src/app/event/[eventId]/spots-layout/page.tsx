@@ -1,6 +1,7 @@
 import { GetEventById } from "@/actions/get-events";
 import { GetSpotsByEvent } from "@/actions/get-spots";
-import ButtonNavigate from "@/components/button";
+
+import ButtonNavigate from "@/components/buttonNavigate";
 
 import SpotSeatIcon from "@/components/spotSeat";
 import TicketKindSelect from "@/components/ticketKindSelect";
@@ -66,7 +67,7 @@ export default async function SpotsLayoutPage({ params }: Params) {
         <div className="flex flex-wrap items-stretch gap-x-4">
           <div className="flex w-full sm:w-[98%] md:min-w-[600px] lg:max-w-[1000px] flex-col px-12 py-6 rounded-xl bg-secondary mt-8">
             <div className="flex items-center justify-center min-w-full bg-primary p-6 rounded-xl">
-              <div className="font-semibold text-[28px]">PALCO</div>
+              <div className="font-semibold text-[28px] uppercase">Palco</div>
             </div>
             <div className="flex flex-col gap-4 mt-4">
               {spotGroupedByRow.map(({ row, spots }, index) => (
@@ -121,8 +122,8 @@ export default async function SpotsLayoutPage({ params }: Params) {
                 : "Selecione o tipo de entrada para verficar os valores..."}
             </p>
             <ButtonNavigate
-              label="Ir para pagamento"
-              navigateTo="/checkout"
+              label="Ir Para Pagamento"
+              navigateTo={"/checkout"}
               disabled={!ticketKind}
             />
           </div>

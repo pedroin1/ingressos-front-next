@@ -1,10 +1,16 @@
 "use client";
 
+import { navigate } from "@/actions/navigate";
 import { ComponentProps } from "react";
 
-export default function ButtonComponent({ label, ...props }: ButtonProps) {
+export default function ButtonNavigate({ label, navigateTo, ...props }: Props) {
+  const handleClickNavigate = () => {
+    navigate(navigateTo);
+  };
+
   return (
     <button
+      onClick={() => handleClickNavigate()}
       className="bg-btn-primary uppercase text-secondary font-bold px-2 py-4 rounded-md 
       hover:bg-[#c1c1c1] 
       disabled:cursor-not-allowed disabled:bg-[#c1c1c1]"
@@ -15,6 +21,7 @@ export default function ButtonComponent({ label, ...props }: ButtonProps) {
   );
 }
 
-interface ButtonProps extends ComponentProps<"button"> {
+interface Props extends ComponentProps<"button"> {
   label: string;
+  navigateTo: string;
 }
