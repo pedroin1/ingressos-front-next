@@ -26,30 +26,40 @@ export default function Footer() {
         <div className="flex flex-col">
           <h2 className="font-bold text-xl whitespace-nowrap">Links Úteis</h2>
           <hr className="my-6 h-[2px] border-t-0 bg-secondary" />
-          <a href="/">Início</a>
-          <a href="/">Sobre</a>
-          <a href="/">Email</a>
-          <a href="/">Contato</a>
-          <a href="/">Produtos</a>
+          <a className="hover:underline" href="/">
+            Início
+          </a>
+          <a className="hover:underline mt-1" href="/">
+            Sobre
+          </a>
+          <a className="hover:underline mt-1" href="/">
+            Email
+          </a>
+          <a className="hover:underline mt-1" href="/">
+            Contato
+          </a>
+          <a className="hover:underline mt-1" href="/">
+            Produtos
+          </a>
         </div>
-        <div className="flex flex-col">
+        <div className="flex flex-col ">
           <h2 className="font-bold text-xl whitespace-nowrap">Fale Conosco</h2>
           <hr className="my-6 h-[2px] border-t-0 bg-secondary" />
-          <a href="/" className="flex items-center gap-2">
+          <a href="/" className="flex items-center gap-2 hover:underline">
             <FaFacebook size={18} />
             <p>Facebook</p>
           </a>
-          <a href="/" className="flex items-center gap-2">
+          <a href="/" className="flex items-center gap-2 mt-1 hover:underline">
             <FaInstagram size={18} />
             <p>Instagram</p>
           </a>
-          <a href="/" className="flex items-center gap-2">
+          <a href="/" className="flex items-center gap-2 mt-1 hover:underline">
             <FaGoogle size={18} />
             <p>Google</p>
           </a>
-          <a href="/" className="flex items-center gap-2">
+          <a href="/" className="flex items-center gap-2 mt-1 hover:underline">
             <FaWhatsapp size={18} />
-            <p>+55 21 9999999</p>
+            <p className="whitespace-nowrap">+55 21 9999999</p>
           </a>
         </div>
       </section>

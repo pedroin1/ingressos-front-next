@@ -1,8 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
-import { BsFillCartCheckFill } from "react-icons/bs";
 import { FaCartShopping, FaPlus } from "react-icons/fa6";
-import { FiShoppingCart } from "react-icons/fi";
 
 export default function NavBar() {
   return (
@@ -20,6 +18,7 @@ export default function NavBar() {
             src={"logo.svg"}
             width={156}
             height={64}
+            quality={100}
             alt="image"
             priority={true}
           />
