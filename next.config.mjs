@@ -3,8 +3,8 @@ const nextConfig = {
   images: {
     remotePatterns: [
       {
-        protocol: "https",
-        hostname: "freerangestock.com",
+        protocol: "http",
+        hostname: "i.pinimg.com",
         port: "",
         pathname: "/**",
       },

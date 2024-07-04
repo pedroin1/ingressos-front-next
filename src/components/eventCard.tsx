@@ -14,9 +14,8 @@ export default function EventCard({ event }: Props) {
             src={event.image_url}
             alt={event.name}
             width={100}
-            height={80}
+            height={100}
             quality={100}
-            unoptimized={true}
           />
         </Suspense>
         <div className="flex flex-col gap-y-6 px-4 py-6">

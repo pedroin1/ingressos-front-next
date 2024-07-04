@@ -2,12 +2,6 @@
 @tailwind components;
 @tailwind utilities;
 
-@layer utilities {
-  .text-balance {
-    text-wrap: balance;
-  }
-}
-
 body,
 html {
   width: 100vw;
@@ -22,5 +16,9 @@ html {
   .no-arrows::-webkit-inner-spin-button {
     margin: 0;
     -webkit-appearance: none;
+  }
+
+  .disable-select {
+    -ms-expand: "display: none";
   }
 }
