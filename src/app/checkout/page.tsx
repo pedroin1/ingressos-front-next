@@ -23,7 +23,7 @@ export default async function PageCheckOut() {
     event = await GetEventById(eventId);
     totalPrice = calculateTotalPriceOfTickets(
       ticketKind,
-      selectedSpots,
+      selectedSpots.length,
       event.price
     );
   }

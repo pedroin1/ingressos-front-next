@@ -4,6 +4,7 @@ import type { Metadata } from "next";
 import { Montserrat } from "next/font/google";
 import "./globals.css";
 import Footer from "@/components/footer";
+import { EventContextProvider } from "@/context/eventContext";
 
 const montserrat = Montserrat({ subsets: ["latin"] });
 
@@ -29,7 +30,7 @@ export default function RootLayout({
         <div className="p-4 md:p-10 w-[100vw] min-w-[500px] max-w-[1600px]">
           <NavBar />
           <ToasterCustomContext />
-          {children}
+          <EventContextProvider>{children}</EventContextProvider>
         </div>
         <Footer />
       </body>
