@@ -11,7 +11,7 @@ export default function NavBar() {
           href={"/event/criarEvento"}
         >
           <FaPlus />
-          Criar Evento
+          <b>Criar Evento</b>
         </Link>
         <Link href={"/"} className="mx-auto">
           <img src={"logo.png"} className="w-56 min-w-32" alt="image-logo" />

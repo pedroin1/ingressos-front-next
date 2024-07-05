@@ -15,7 +15,7 @@ export default function Footer() {
           <h2 className="font-bold text-xl whitespace-nowrap">Sobre</h2>
           <hr className="my-6 h-[2px] border-t-0 bg-secondary" />
           <p className="max-w-[800px]">
-            A <strong>Main Event</strong> é uma empresa inovadora no setor de
+            A <strong>Ingresso.com</strong> é uma empresa inovadora no setor de
             venda de ingressos, dedicada a proporcionar experiências únicas e
             inesquecíveis aos seus clientes. Com uma plataforma intuitiva e de
             fácil navegação, a Main Evento facilita a compra de ingressos para

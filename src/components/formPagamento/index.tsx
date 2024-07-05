@@ -30,7 +30,7 @@ export default function FormPagamento({ eventId, spots, ticketKind }: Props) {
   };
 
   return (
-    <div className="w-full flex-1 min-w-[320px] flex-col py-8 px-4 bg-secondary rounded-xl">
+    <div className="w-full flex-1 min-w-[320px] flex-col p-6 bg-secondary rounded-xl">
       <h1 className="text-2xl font-bold">Informações do pagamento</h1>
       <Formik
         initialValues={{

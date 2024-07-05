@@ -45,7 +45,7 @@ export default async function SpotsLayoutPage({ params }: Params) {
 
   return (
     <section className="mt-10 h-full min-w-80 ">
-      <div className="flex flex-col px-12 py-6 rounded-xl bg-secondary">
+      <div className="flex flex-col p-8 rounded-xl bg-secondary">
         <p className="text-lg text-subtitle font-bold">
           {formatDateToBr(event.date)}
         </p>
@@ -104,7 +104,7 @@ export default async function SpotsLayoutPage({ params }: Params) {
               </div>
             </div>
           </div>
-          <div className="flex flex-col px-12 flex-grow max-w-full md:max-w-[500px] max-h-[400px] py-6 rounded-xl bg-secondary mt-8">
+          <div className="flex flex-col px-12 flex-grow max-w-full max-h-[400px] py-6 rounded-xl bg-secondary mt-8 md:max-w-[500px] mx-auto">
             <p className="text-xl mt-2 mb-2 font-bold">
               Confira os valores do evento
             </p>

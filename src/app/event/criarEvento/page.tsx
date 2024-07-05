@@ -1,5 +1,4 @@
 import FromCriarEvento from "@/components/formCriarEvento";
-import InputComponent from "@/components/input";
 import { Metadata } from "next";
 
 export const metadata: Metadata = {
@@ -9,11 +8,8 @@ export const metadata: Metadata = {
 
 export default async function CriarEventoPage() {
   return (
-    <section className="mt-10 flex">
+    <section className="mt-10">
       <FromCriarEvento />
-      <div>
-        <InputComponent label="Imagem do evento" type="file" />
-      </div>
     </section>
   );
 }
