@@ -1,16 +1,13 @@
 "use client";
+import { createContext, PropsWithChildren } from "react";
 
-import { cookies } from "next/headers";
-import { createContext, useContext } from "react";
+type IEventContext = {
+  totalPrice: number;
+};
 
-const EventContext = createContext<IEventContext>({ totalPrice: 0 });
+export const EventContext = createContext<IEventContext | null>(null);
 
-export default function useEvent() {
-  const context = useContext(EventContext);
-  return context;
-}
-
-export function EventContextProvider({ children }: Props) {
+export function EventContextProvider({ children }: PropsWithChildren) {
   let totalPrice = 5;
   return (
     <EventContext.Provider value={{ totalPrice }}>
@@ -18,11 +15,3 @@ export function EventContextProvider({ children }: Props) {
     </EventContext.Provider>
   );
 }
-
-type IEventContext = {
-  totalPrice: number;
-};
-
-type Props = {
-  children: React.ReactNode;
-};

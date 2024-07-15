@@ -65,7 +65,7 @@ export default async function SpotsLayoutPage({ params }: Params) {
       <div className="mt-8">
         <TitleComponent title="Escolha seu lugar" />
         <div className="flex flex-wrap items-stretch gap-x-4">
-          <div className="flex w-full sm:w-[98%] md:min-w-[600px] lg:max-w-[1000px] flex-col px-12 py-6 rounded-xl bg-secondary mt-8">
+          <div className="flex w-[1000px] flex-col px-12 py-6 rounded-xl bg-secondary mt-8">
             <div className="flex items-center justify-center min-w-full bg-primary p-6 rounded-xl">
               <div className="font-semibold text-[28px] uppercase">Palco</div>
             </div>
@@ -73,7 +73,7 @@ export default async function SpotsLayoutPage({ params }: Params) {
               {spotGroupedByRow.map(({ row, spots }, index) => (
                 <div
                   key={index}
-                  className="items-center justify-center flex gap-4 "
+                  className="items-center justify-center flex gap-4 small:gap-0.5"
                 >
                   {row}
                   {spots.map((spot, index) => (

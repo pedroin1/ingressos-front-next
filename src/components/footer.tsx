@@ -9,8 +9,8 @@ import {
 
 export default function Footer() {
   return (
-    <footer className="w-screen bg-gray-800 flex flex-col justify-between">
-      <section className="flex justify-center gap-14 items-start px-2 py-12">
+    <footer className="w-full min-w-[500px] bg-gray-800 flex flex-col justify-between">
+      <section className="flex justify-center gap-14 items-start px-2 py-12 medium:hidden">
         <div className="flex flex-col">
           <h2 className="font-bold text-xl whitespace-nowrap">Sobre</h2>
           <hr className="my-6 h-[2px] border-t-0 bg-secondary" />
@@ -42,7 +42,7 @@ export default function Footer() {
             Produtos
           </a>
         </div>
-        <div className="flex flex-col ">
+        <div className="flex flex-col">
           <h2 className="font-bold text-xl whitespace-nowrap">Fale Conosco</h2>
           <hr className="my-6 h-[2px] border-t-0 bg-secondary" />
           <a href="/" className="flex items-center gap-2 hover:underline">
@@ -63,7 +63,7 @@ export default function Footer() {
           </a>
         </div>
       </section>
-      <div className="bg-gray-900 w-screen h-10 flex items-center justify-center">
+      <div className="bg-gray-900 w-full min-w-[500px] h-10 flex items-center justify-center">
         <span>@Todos os direitos reservados</span>
       </div>
     </footer>

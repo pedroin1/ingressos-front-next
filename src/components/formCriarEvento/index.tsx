@@ -32,22 +32,22 @@ export default function FromCriarEvento() {
     }
   };
 
-  console.log(imageFile);
+  const initialValues = {
+    name: "",
+    description: "",
+    eventDate: "",
+    price: 0,
+    rating: 0,
+    image_url: "https://example.com/images/guardians-of-the-galaxy.jpg",
+    location: "",
+  };
 
   return (
-    <div className="flex gap-8 justify-center">
+    <div className="flex gap-8 justify-center flex-wrap">
       <div className="w-[450px] h-fit p-6 bg-secondary rounded-xl">
         <h1 className="text-2xl font-bold">Informações do evento</h1>
         <Formik
-          initialValues={{
-            name: "",
-            description: "",
-            eventDate: "",
-            price: 0,
-            rating: 0,
-            image_url: "https://example.com/images/guardians-of-the-galaxy.jpg",
-            location: "",
-          }}
+          initialValues={initialValues}
           validateOnBlur={true}
           validateOnChange={false}
           validationSchema={validateFields}
@@ -78,7 +78,7 @@ export default function FromCriarEvento() {
                 label="Descricao do evento"
                 type="text"
                 name="description"
-                placeholder="Meu evento principal..."
+                placeholder="Descricao do evento..."
                 value={values.description}
                 onChange={handleChange}
               />
@@ -139,35 +139,25 @@ export default function FromCriarEvento() {
           )}
         </Formik>
       </div>
-      <div className="bg-secondary rounded-xl p-4">
-        <h1 className="font-bold text-lg mb-2 text-center">Prévia do evento</h1>
+      <div className="bg-secondary rounded-xl p-4 h-fit w-[450px]">
+        <h1 className="font-bold text-lg mb-2 text-center">Imagem do evento</h1>
         {imageFile ? (
-          <Image
+          <img
             width={500}
             height={500}
-            quality={100}
-            className="w-[28rem] h-[22rem] bg-no-repeat rounded object-cover"
+            className="w-full min-w-96 h-[22rem] bg-no-repeat rounded object-cover"
             src={imageFile}
             alt="event-image"
           />
         ) : (
-          <Image
+          <img
             width={500}
             height={500}
-            quality={100}
             className="w-[28rem] h-[22rem] bg-no-repeat rounded object-cover"
             src={"/mock.jpg"}
             alt="event-image"
           />
         )}
-        <div className="flex flex-col gap-2 mt-2">
-          <span>Nome do evento: </span>
-          <span>Descricao do evento</span>
-          <span>Data do evento</span>
-          <span>Rating do evento</span>
-          <span>Preco do evento</span>
-          <span>Localizacao do evento</span>
-        </div>
       </div>
     </div>
   );

@@ -9,13 +9,12 @@ export default function EventCard({ event }: Props) {
     <Link href={`/event/${event.id}/spots-layout`}>
       <div className="flex w-[277px] h-[450px] flex-col rounded-2xl bg-slate-800">
         <Suspense fallback={<div>Carregando Imagem...</div>}>
-          <Image
+          <img
             className="w-full h-64 rounded-t-2xl"
             src={event.image_url}
             alt={event.name}
             width={100}
             height={100}
-            quality={100}
           />
         </Suspense>
         <div className="flex flex-col gap-y-6 px-4 py-6">

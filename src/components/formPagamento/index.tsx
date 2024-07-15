@@ -8,11 +8,10 @@ import toast from "react-hot-toast";
 import InputComponent from "../input";
 import validateFields from "./validation";
 import ButtonComponent from "../button";
-import useEvent from "@/context/eventContext";
+import useEvent from "@/hooks/useEvent";
 
 export default function FormPagamento({ eventId, spots, ticketKind }: Props) {
   const { totalPrice } = useEvent();
-  console.log(totalPrice);
 
   const handleClickFinalzarPagamento = async (email: string) => {
     if (eventId && spots && ticketKind) {

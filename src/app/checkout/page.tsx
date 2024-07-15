@@ -12,12 +12,13 @@ export const metadata: Metadata = {
 };
 
 export default async function PageCheckOut() {
-  let event;
-  let totalPrice;
   const cookieStore = cookies();
   const eventId = cookieStore.get("eventId")?.value;
   const selectedSpots = JSON.parse(cookieStore.get("spots")?.value || "[]");
   const ticketKind = cookieStore.get("ticketKind")?.value;
+
+  let event;
+  let totalPrice;
 
   if (eventId) {
     event = await GetEventById(eventId);
